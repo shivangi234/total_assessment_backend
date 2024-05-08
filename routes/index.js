@@ -33,6 +33,7 @@ router.get('/organization',getOrganizations );
 router.post('/organizationcreate', auth, sessionAuth,createOrganization );
 router.post('/dashboard',dashboard );
 router.post('/quiz',getAllQuiz);
+router.post('/quizlist', quizList);
 router.post('/getallstudent',getAllStudent);
 router.post('/quizdetails',getAssignedQuizDetails);
 router.post("/quizdetails", sessionAuth, getAssignedQuizDetails);
