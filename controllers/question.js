@@ -116,7 +116,7 @@ const getQuestionDetails = async (req, res) => {
                 .where({ mcq_code: mcqCode, quiz_code: quizCode })
                 .first();
 
-            result.question = questionData.question;
+        result.question = questionData.question;
             result.optionList = {
                 option1: optionData.option1,
                 option2: optionData.option2,
@@ -125,12 +125,14 @@ const getQuestionDetails = async (req, res) => {
                 option5: optionData.option5
             };
         }
-
         result.responseType = questionData.response_type;
         result.mark_per_question = questionData.mark_per_question;
         result.penalty_factor = questionData.penalty_factor;
         result.is_option_shuffle = questionData.is_option_shuffle;
         result.encryptionStatus = encryptionStatus;
+        result.created_on = questionData.created_on;
+        // result.optionList = optionData;
+    
 
         // Query to get submitted answer
         const submittedData = await db('quiz_answer')

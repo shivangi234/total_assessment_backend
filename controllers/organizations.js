@@ -34,13 +34,22 @@ const createOrganization = async(req, res)=>{
     }
 }
 
- const getOrganizations =async (req,res)=>{
-   try {
-     const organization = await db("organizationmaster").select().where("record_status", 1) .orderBy("id", "asc");
-     res.status(200).json({ message: "Data get successfully",organization });
-   } catch (error) {
-    res.status(500).json({ error: "Error retrieving data" });
-   }
+const getOrganizations = async (req, res) => {
+  try {
+    const organizations = await db("organizationmaster")
+       .select("org_code", "org_name")
+       .where("record_status", 1)
+       .orderBy("id", "asc");
+//only get the org_code and org_name
+    const formattedOrganizations = organizations.map(org => ({
+       org_code: org.org_code,
+       org_name: org.org_name
+    }));
+
+    res.status(200).json({ status: 200, message: "Organization data fetched successfully.", data: formattedOrganizations });
+  } catch (error) {
+   res.status(500).json({ status: 500, error: "Error retrieving data" });
+  }
 }
 
 
