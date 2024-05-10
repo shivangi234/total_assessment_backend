@@ -213,6 +213,22 @@ module.exports = {
       directory: './config/migrations' 
     }
   },
+  rolemaster : {
+    client: 'postgresql',
+    connection: {
+      database: 'total_assessment_backend',
+      user:     'postgres',
+      password: 'password'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_rolemaster_migrations',
+      directory: './config/migrations' 
+    }
+  },
 
 
 
